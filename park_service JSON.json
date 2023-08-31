@@ -1,0 +1,97 @@
+{
+  "parkServiceName": "Arches National Park",
+  "parkServiceAddress": "PO Box 907",
+  "parkServiceCity": "Moab",
+  "parkServiceState": "Utah",
+  "parkServiceZip": "84532",
+  "parkServicePhone": "4357192299"
+}
+{
+  "parkServiceName": "Denali National Park",
+  "parkServiceAddress": "PO Box 9",
+  "parkServiceCity": "Denali Park",
+  "parkServiceState": "Alaska",
+  "parkServiceZip": "99755",
+  "parkServicePhone": "9076839532"
+}
+{
+  "parkServiceName": "Grand Canyon National Park",
+  "parkServiceAddress": "PO Box 129",
+  "parkServiceCity": "Grand Canyon",
+  "parkServiceState": "Arizona",
+  "parkServiceZip": "86023",
+  "parkServicePhone": "9286387888"
+}
+{
+  "parkServiceName": "Death Valley National Park",
+  "parkServiceAddress": "PO Box 579",
+  "parkServiceCity": "Death Valley",
+  "parkServiceState": "California",
+  "parkServiceZip": "92328",
+  "parkServicePhone": "7607863200"
+}
+{
+  "parkServiceName": "Great Sand Dunes National Park",
+  "parkServiceAddress": "11500 Highway 150",
+  "parkServiceCity": "Mosca",
+  "parkServiceState": "Colorado",
+  "parkServiceZip": "81146",
+  "parkServicePhone": "7193786395"
+}
+{
+  "parkServiceName": "Saguaro National Park",
+  "parkServiceAddress": "2700 North Kinney Rd",
+  "parkServiceCity": "Tucson",
+  "parkServiceState": "Arizona",
+  "parkServiceZip": "85743",
+  "parkServicePhone": "5207335153"
+}
+{
+  "parkServiceName": "Hawaii Volcanoes National Park",
+  "parkServiceAddress": "1 Crater Rim Drive",
+  "parkServiceCity": "Hawaii National Park",
+  "parkServiceState": "Hawaii",
+  "parkServiceZip": "96718",
+  "parkServicePhone": "8089856011"
+}
+{
+  "parkServiceName": "Olympic National Park",
+  "parkServiceAddress": "3002 Mount Angeles Road",
+  "parkServiceCity": "Port Angeles",
+  "parkServiceState": "Washington",
+  "parkServiceZip": "98362",
+  "parkServicePhone": "3605653130"
+}
+{
+  "parkServiceName": "Kenai Fjords National Park",
+  "parkServiceAddress": "PO Box 1727",
+  "parkServiceCity": "Seward",
+  "parkServiceState": "Alaska",
+  "parkServiceZip": "99664",
+  "parkServicePhone": "9074220500"
+}
+{
+  "parkServiceName": "Mammoth Cave National Park",
+  "parkServiceAddress": "1 Mammoth Cave Parkway",
+  "parkServiceCity": "Mammoth Cave",
+  "parkServiceState": "Kentucky",
+  "parkServiceZip": "42259",
+  "parkServicePhone": "2707582180"
+}
+{
+  "parkServiceName": "Glacier Bay National Park & Preserve",
+  "parkServiceAddress": "PO Box 140",
+  "parkServiceCity": "Gustavus",
+  "parkServiceState": "Alaska",
+  "parkServiceZip": "99826",
+  "parkServicePhone": "9076972230",
+  "parkServiceCurrentEvents": "Hike Bell's March"
+}
+{
+  "parkServiceName": "Black Canyon of the Gunnison National Park",
+  "parkServiceAddress": "102 Elk Creek",
+  "parkServiceCity": "Gunnison",
+  "parkServiceState": "Colorado",
+  "parkServiceZip": "81230",
+  "parkServicePhone": "9706412337"
+}

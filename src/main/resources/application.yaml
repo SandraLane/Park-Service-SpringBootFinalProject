@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    username: park_service
+    password: park_service
+    url: jdbc:mysql://localhost:3306/park_service
+    
+ 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    
