@@ -100,40 +100,40 @@ public class ParkServiceService {
 	  return parkRanger; 
 	  }
 	  
-//	  private Camper findCamperById(Long parkServiceId, Long camperId) { 
-//	  Camper camper = camperDao.findById(camperId).orElseThrow(() -> new
-//		  NoSuchElementException("Camper with ID=" + camperId + "was not found."));
-//		  
-//	  boolean found = false;
-//	  
-//	  for(ParkService parkService : camper.getParkServices()) {
-//	  if(parkService.getParkServiceId() == parkServiceId) { 
-//		  found = true; 
-//		  break; 
-//	  }
-//		  } if(!found) { 
-//		  throw new IllegalArgumentException("The camper with ID=" +
-//	  camperId + " is not a member of the park with ID=" + parkServiceId); 
-//		  } 
-//		  return camper; 
-//	  }
-	  
 	  private Camper findCamperById(Long parkServiceId, Long camperId) { 
-		  Camper camper = camperDao.findById(camperId).orElseThrow(()
-		  -> new NoSuchElementException ("Camper with ID=" + camperId +
-		  " was not found.")); 
-		  if(camper.getParkService().getParkServiceId() !=
-		  parkServiceId) { 
-		  throw new IllegalArgumentException("The camper with ID=" + camperId +
-		  " is not staying at the ParkService with ID=" + parkServiceId + "."); 
-		  }
-		  return camper; 
-		  }
+	  Camper camper = camperDao.findById(camperId).orElseThrow(() -> new
+		  NoSuchElementException("Camper with ID=" + camperId + "was not found."));
+		  
+	  boolean found = false;
 	  
-	  private ParkRanger findParkRangerbyId(Long parkServiceId, Long parkRangerId) {
-			return parkRangerDao.findById(parkServiceId).orElseThrow(() -> new NoSuchElementException("ParkRanger with ID=" + parkRangerId + 
-					" is not employed by the ParkService with ID=" + parkServiceId + "."));
-		}
+	  for(ParkService parkService : camper.getParkServices()) {
+	  if(parkService.getParkServiceId() == parkServiceId) { 
+		  found = true; 
+		  break; 
+	  }
+		  } if(!found) { 
+		  throw new IllegalArgumentException("The camper with ID=" +
+	  camperId + " is not a member of the park with ID=" + parkServiceId); 
+		  } 
+		  return camper; 
+	  }
+	  
+//	  private Camper findCamperById(Long parkServiceId, Long camperId) { 
+//		  Camper camper = camperDao.findById(camperId).orElseThrow(()
+//		  -> new NoSuchElementException ("Camper with ID=" + camperId +
+//		  " was not found.")); 
+//		  if(camper.getParkServices().getParkServiceId() !=
+//		  parkServiceId) { 
+//		  throw new IllegalArgumentException("The camper with ID=" + camperId +
+//		  " is not staying at the ParkService with ID=" + parkServiceId + "."); 
+//		  }
+//		  return camper; 
+//		  }
+//	  
+//	  private ParkRanger findParkRangerbyId(Long parkServiceId, Long parkRangerId) {
+//			return parkRangerDao.findById(parkServiceId).orElseThrow(() -> new NoSuchElementException("ParkRanger with ID=" + parkRangerId + 
+//					" is not employed by the ParkService with ID=" + parkServiceId + "."));
+//		}
 	  
 //	  private Camper findCamperbyId(Long parkServiceId, Long camperId) {
 //			return camperDao.findById(parkServiceId).orElseThrow(() -> new NoSuchElementException("Camper with ID=" + camperId + 
@@ -219,7 +219,7 @@ public class ParkServiceService {
 	}
 	 @Transactional(readOnly = true) public 
 	  ParkRangerData retrieveParkRangerById(Long parkServiceId, Long parkRangerId) { ParkRanger
-	  parkRanger = findParkRangerbyId(parkServiceId, parkRangerId);
+	  parkRanger = findParkRangerById(parkServiceId, parkRangerId);
 	  
 	  
 	  return new ParkRangerData(parkRanger); 
@@ -238,7 +238,7 @@ public class ParkServiceService {
 	  }
 	  
 	  public void deleteParkRangerById(Long parkServiceId, Long parkRangerId) {
-	  ParkRanger parkRanger = findParkRangerbyId(parkServiceId, parkRangerId);
+	  ParkRanger parkRanger = findParkRangerById(parkServiceId, parkRangerId);
 	  parkRangerDao.delete(parkRanger);
 	  
 	  }
