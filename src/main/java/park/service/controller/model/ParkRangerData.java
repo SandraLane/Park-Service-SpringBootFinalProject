@@ -32,52 +32,6 @@ public class ParkRangerData {
 		
 	}
 }
-//
-//@Data
-//@NoArgsConstructor
-//public
-//static class ParkRangerCamper {
-//	private Long camperId;
-//	private String camperFirstName;
-//	private String camperLastName;
-//	private String camperEmail;
-//	
-//	public ParkRangerCamper(Camper camper) {
-//		camperId = camper.getCamperId();
-//		camperFirstName = camper.getCamperFirstName();
-//		camperLastName = camper.getCamperLastName();
-//		camperEmail = camper.getCamperEmail();
-//	}
-//	
-//	@Data
-//	@NoArgsConstructor
-//	public class ParkRangerParkService {
-//
-//		private Long parkServiceId;
-//		private String parkServiceName;
-//		private String parkServiceAddress;
-//		private String parkServiceCity;
-//		private String parkServiceState;
-//		private Long parkServiceZip;
-//		private String parkServicePhone;
-//		private String parkServiceCurrentEvents;
-//		
-//		
-//		public ParkRangerParkService(ParkService parkService) {
-//			parkServiceId = parkService.getParkServiceId();
-//			parkServiceName = parkService.getParkServiceName();
-//			parkServiceAddress = parkService.getParkServiceAddress();
-//			parkServiceCity =parkService.getParkServiceCity();
-//			parkServiceState = parkService.getParkServiceState();
-//			parkServiceZip = parkService.getParkServiceZip();
-//			parkServicePhone = parkService.getParkServicePhone();
-//			parkServiceCurrentEvents = parkService.getParkServiceCurrentEvents();
-//			
-//			
-//		
-//		}
-//	}
-//}
-//}
+
 
 

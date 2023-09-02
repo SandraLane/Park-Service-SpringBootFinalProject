@@ -2,6 +2,7 @@ package park.service.entities;
 
 import java.util.HashSet;
 
+
 import java.util.Set;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -40,7 +41,7 @@ public class ParkService {
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany
 	@JoinTable(name="park_camper",joinColumns= @JoinColumn(name="park_service_id"),
 	inverseJoinColumns=@JoinColumn(name="camper_id"))		
 	private Set<Camper> campers = new HashSet<> ();

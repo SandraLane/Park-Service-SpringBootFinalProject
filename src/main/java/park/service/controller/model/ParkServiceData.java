@@ -44,50 +44,7 @@ public class ParkServiceData {
 			}
 	}
 
-//
-//	@Data
-//	@NoArgsConstructor
-//	public
-//	
-//	static class ParkServiceCamper {
-//		private Long camperId;
-//		private String camperFirstName;
-//		private String camperLastName;
-//		private String camperEmail;
-//		
-//		public ParkServiceCamper(Camper camper) {
-//			camperId = camper.getCamperId();
-//			camperFirstName = camper.getCamperFirstName();
-//			camperLastName = camper.getCamperLastName();
-//			camperEmail = camper.getCamperEmail();
-//		}
-//	}
-//		
-//	@Data
-//	@NoArgsConstructor
-//	public
-//	static class ParkServiceParkRanger {
-//		private Long parkRangerId;
-//		private String parkRangerFirstName;
-//		private String parkRangerLastName;
-//		private String parkRangerPhone;
-//		private String parkRangerJobTitle;
-//		
-//		public ParkServiceParkRanger(ParkRanger parkRanger) {
-//			parkRangerId = parkRanger.getParkRangerId();
-//			parkRangerFirstName = parkRanger.getParkRangerFirstName();
-//			parkRangerLastName = parkRanger.getParkRangerLastName();
-//			parkRangerPhone = parkRanger.getParkRangerPhone();
-//			parkRangerJobTitle = parkRanger.getParkRangerJobTitle();	
-//			
-//		
-//				
-//		}
-//	
-//
-//		
-//	}
-//
+
 
 }
 

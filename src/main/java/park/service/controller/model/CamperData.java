@@ -30,53 +30,7 @@ public class CamperData {
 		
 			
 	}
-//
-//	@Data
-//	@NoArgsConstructor
-//	public
-//	static class CamperParkRanger {
-//		private Long parkRangerId;
-//		private String parkRangerFirstName;
-//		private String parkRangerLastName;
-//		private Long parkRangerPhone;
-//		private String parkRangerJobTitle;
-//		
-//		public CamperParkRanger(ParkRanger parkRanger) {
-//			parkRangerId = parkRanger.getParkRangerId();
-//			parkRangerFirstName = parkRanger.getParkRangerFirstName();
-//			parkRangerLastName = parkRanger.getParkRangerLastName();
-//			parkRangerPhone = parkRanger.getParkRangerPhone();
-//			parkRangerJobTitle = parkRanger.getParkRangerJobTitle();		
-//				
-//		}
-//		
-//		@Data
-//		@NoArgsConstructor
-//		public class CamperParkService {
-//
-//			private Long parkServiceId;
-//			private String parkServiceName;
-//			private String parkServiceAddress;
-//			private String parkServiceCity;
-//			private String parkServiceState;
-//			private Long parkServiceZip;
-//			private Long parkServicePhone;
-//			private String parkServiceCurrentEvents;
-//						
-//			
-//			public CamperParkService(ParkService parkService) {
-//				parkServiceId = parkService.getParkServiceId();
-//				parkServiceName = parkService.getParkServiceName();
-//				parkServiceAddress = parkService.getParkServiceAddress();
-//				parkServiceCity =parkService.getParkServiceCity();
-//				parkServiceState = parkService.getParkServiceState();
-//				parkServiceZip = parkService.getParkServiceZip();
-//				parkServicePhone = parkService.getParkServicePhone();
-//				parkServiceCurrentEvents = parkService.getParkServiceCurrentEvents();
-//					
-//		}
-//	}
-//}
+
 
 	
 }

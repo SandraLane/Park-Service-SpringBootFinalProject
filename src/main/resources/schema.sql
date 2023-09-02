@@ -41,11 +41,9 @@ CREATE TABLE park_camper (
 camper_id INT NOT NULL,
 park_service_id INT NOT NULL,
 FOREIGN KEY (camper_id) 
-	REFERENCES camper (camper_id)
-		ON DELETE CASCADE,
+	REFERENCES camper (camper_id),
 FOREIGN KEY (park_service_id)
 	REFERENCES park_service (park_service_id)
-		ON DELETE CASCADE
 );
 
 
