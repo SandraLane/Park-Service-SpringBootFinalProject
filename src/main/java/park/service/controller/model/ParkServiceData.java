@@ -5,9 +5,9 @@ import java.util.Set;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import park.service.controller.model.ParkServiceData;
-import park.service.entity.Camper;
-import park.service.entity.ParkRanger;
-import park.service.entity.ParkService;
+import park.service.entities.Camper;
+import park.service.entities.ParkRanger;
+import park.service.entities.ParkService;
 
 @Data
 @NoArgsConstructor
@@ -18,11 +18,11 @@ public class ParkServiceData {
 	private String parkServiceCity;
 	private String parkServiceState;
 	private Long parkServiceZip;
-	private Long parkServicePhone;
+	private String parkServicePhone;
 	private String parkServiceCurrentEvents;
 	
-	private Set<ParkServiceParkRanger> parkRangers = new HashSet<> ();
-	private Set<ParkServiceCamper> campers = new HashSet<> ();	
+	private Set<ParkRangerData> parkRangers = new HashSet<> ();
+	private Set<CamperData> campers = new HashSet<> ();	
 	
 	
 	
@@ -37,57 +37,57 @@ public class ParkServiceData {
 		parkServiceCurrentEvents = parkService.getParkServiceCurrentEvents();
 		
 		for(Camper camper : parkService.getCampers()) {
-			campers.add(new ParkServiceCamper(camper));
+			campers.add(new CamperData(camper));
 		}
 		for (ParkRanger parkRanger : parkService.getParkRangers()) {
-			parkRangers.add(new ParkServiceParkRanger(parkRanger));
+			parkRangers.add(new ParkRangerData(parkRanger));
 			}
 	}
 
-
-	@Data
-	@NoArgsConstructor
-	public
-	
-	static class ParkServiceCamper {
-		private Long camperId;
-		private String camperFirstName;
-		private String camperLastName;
-		private String camperEmail;
-		
-		public ParkServiceCamper(Camper camper) {
-			camperId = camper.getCamperId();
-			camperFirstName = camper.getCamperFirstName();
-			camperLastName = camper.getCamperLastName();
-			camperEmail = camper.getCamperEmail();
-		}
-	}
-		
-	@Data
-	@NoArgsConstructor
-	public
-	static class ParkServiceParkRanger {
-		private Long parkRangerId;
-		private String parkRangerFirstName;
-		private String parkRangerLastName;
-		private Long parkRangerPhone;
-		private String parkRangerJobTitle;
-		
-		public ParkServiceParkRanger(ParkRanger parkRanger) {
-			parkRangerId = parkRanger.getParkRangerId();
-			parkRangerFirstName = parkRanger.getParkRangerFirstName();
-			parkRangerLastName = parkRanger.getParkRangerLastName();
-			parkRangerPhone = parkRanger.getParkRangerPhone();
-			parkRangerJobTitle = parkRanger.getParkRangerJobTitle();	
-			
-		
-				
-		}
-	
-
-		
-	}
-
+//
+//	@Data
+//	@NoArgsConstructor
+//	public
+//	
+//	static class ParkServiceCamper {
+//		private Long camperId;
+//		private String camperFirstName;
+//		private String camperLastName;
+//		private String camperEmail;
+//		
+//		public ParkServiceCamper(Camper camper) {
+//			camperId = camper.getCamperId();
+//			camperFirstName = camper.getCamperFirstName();
+//			camperLastName = camper.getCamperLastName();
+//			camperEmail = camper.getCamperEmail();
+//		}
+//	}
+//		
+//	@Data
+//	@NoArgsConstructor
+//	public
+//	static class ParkServiceParkRanger {
+//		private Long parkRangerId;
+//		private String parkRangerFirstName;
+//		private String parkRangerLastName;
+//		private String parkRangerPhone;
+//		private String parkRangerJobTitle;
+//		
+//		public ParkServiceParkRanger(ParkRanger parkRanger) {
+//			parkRangerId = parkRanger.getParkRangerId();
+//			parkRangerFirstName = parkRanger.getParkRangerFirstName();
+//			parkRangerLastName = parkRanger.getParkRangerLastName();
+//			parkRangerPhone = parkRanger.getParkRangerPhone();
+//			parkRangerJobTitle = parkRanger.getParkRangerJobTitle();	
+//			
+//		
+//				
+//		}
+//	
+//
+//		
+//	}
+//
 
 }
 

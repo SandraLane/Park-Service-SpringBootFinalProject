@@ -2,6 +2,7 @@ package park.service.controller;
 
 import java.util.List;
 
+
 import java.util.Map;
 import java.util.Set;
 
@@ -21,8 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 import park.service.controller.model.CamperData;
 import park.service.controller.model.ParkRangerData;
 import park.service.controller.model.ParkServiceData;
-import park.service.controller.model.ParkServiceData.ParkServiceCamper;
-import park.service.controller.model.ParkServiceData.ParkServiceParkRanger;
 import park.service.service.ParkServiceService;
 
 
@@ -33,7 +32,7 @@ public class ParkServiceController {
 	@Autowired
 	private ParkServiceService parkServiceService;
 	
-	
+	//add park 
 	@PostMapping("/parkService")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ParkServiceData saveParkService(
@@ -42,24 +41,27 @@ public class ParkServiceController {
 		return parkServiceService.saveParkService(parkServiceData);
 	}
 	
+	 //add park ranger by park service id
 	 @PostMapping("/parkService/{parkServiceId}/parkServiceParkRanger")	  
 	  @ResponseStatus(code = HttpStatus.CREATED) 
-	  public ParkServiceParkRanger saveParkRanger(@PathVariable Long parkServiceId,	  
-	  @RequestBody ParkServiceParkRanger parkServiceParkRanger) {
+	  public ParkRangerData saveParkRanger(@PathVariable Long parkServiceId,	  
+	  @RequestBody ParkRangerData parkRangerData) {
 	  log.info("Adding ParkRanger () for ParkService with ID= {}", parkServiceId,
-	  parkServiceParkRanger); 
-	  return parkServiceService.saveParkRanger(parkServiceId, parkServiceParkRanger); 
+	  parkRangerData); 
+	  return parkServiceService.saveParkRanger(parkServiceId, parkRangerData); 
 	  }
-
+	  
+	  //add camper by park service id
 	  @PostMapping("/parkService/{parkServiceId}/parkServiceCamper")			  
 	  @ResponseStatus(code = HttpStatus.CREATED) 
-	  public ParkServiceCamper saveCamper(@PathVariable Long parkServiceId,
-	  @RequestBody ParkServiceCamper parkServiceCamper) {
+	  public CamperData saveCamper(@PathVariable Long parkServiceId,
+	  @RequestBody CamperData camperData) {
 	  log.info("Adding Camper () for ParkService with ID= {}", parkServiceId,
-	  parkServiceCamper); 
-	  return parkServiceService.saveCamper(parkServiceId, parkServiceCamper); 
+	  camperData); 
+	  return parkServiceService.saveCamper(parkServiceId, camperData); 
 	  }	
 	  
+	  //update park service by park service id
 	  @PutMapping("/parkService/{parkServiceID}") public ParkServiceData
 	  updateParkService(@PathVariable Long parkServiceID,		  
 	  @RequestBody ParkServiceData parkServiceData) {
@@ -69,20 +71,23 @@ public class ParkServiceController {
 	  return parkServiceService.saveParkService(parkServiceData); 
 	  }	  
 		  
+	      //retrieve park service by park service id
 		  @GetMapping("/parkService/{parkServiceId}") 
 		  	public ParkServiceData retrieveParkServiceById(@PathVariable Long parkServiceId) {
 		  		log.info("Retrieving parkService by ID ={) ", parkServiceId);
 		  		
 		  		return parkServiceService.retrieveParkServiceById(parkServiceId);
 		  	}
-		  			
+		  	
+		    //retrieve all park services
 			@GetMapping("/parkService")
 			public List<ParkServiceData> retrieveAllParkServices() {
 					log.info("Retrieve all ParkServices.");
 					return parkServiceService.retrieveAllParkServices();
 				
 				}
-				
+			
+			//delete park by park service id	
 			@DeleteMapping("/parkService/{parkServiceId}")	
 			public Map<String, String> deleteParkServiceById(@PathVariable Long parkServiceId) {
 				log.info("Deleting ParkService with ID={)", parkServiceId);
@@ -92,43 +97,47 @@ public class ParkServiceController {
 				return Map.of("message", "Deletion of ParkService with ID=" + parkServiceId + " was successful.");
 				
 			}	
+			
+			 //Update park ranger by park ranger id and park service id
 			 @PutMapping("/parkService/{parkServiceId}/parkServiceParkRanger/{parkRangerId}") 
-			  public ParkServiceParkRanger updateParkRanger(@PathVariable Long parkRangerId,
-			  @RequestBody ParkServiceParkRanger parkServiceParkRanger) {
-			  parkServiceParkRanger.setParkRangerId(parkRangerId);
+			  public ParkRangerData updateParkRanger(@PathVariable Long parkRangerId,
+			  @RequestBody ParkRangerData parkRangerData) {
+			  parkRangerData.setParkRangerId(parkRangerId);
 			  log.info("Updating parkServiceParkRanger ()", parkRangerId); 
-			  return parkServiceService.saveParkRanger(parkRangerId, parkServiceParkRanger); 
+			  return parkServiceService.saveParkRanger(parkRangerId, parkRangerData); 
 			  }
 			
-			  
+			  //retrieve park ranger by id and park service id they are assigned to
 			  @GetMapping("/parkService/{parkServiceId}/parkRanger/{parkRangerId}") 
-			  public ParkRangerData retrieveParkRangerById(@PathVariable Long parkRangerId, Long
-			  parkServiceId) { 
+			  public ParkRangerData retrieveParkRangerById(@PathVariable Long  parkServiceId, @PathVariable Long parkRangerId) { 
 			  log.info("Retrieving parkRanger by ID={) ", parkRangerId);
-			  return parkServiceService.retrieveParkRangerById(parkRangerId, parkServiceId);
+			  return parkServiceService.retrieveParkRangerById(parkServiceId, parkRangerId);
 			  }
 			  
+			  //retrieve all park rangers
 			  @GetMapping("/parkService/parkRanger") 
 			  public List<ParkRangerData> retrieveAllParkRangers() { 
 			  log.info("Retrieve all ParkRangers."); 
 			  return parkServiceService.retrieveAllParkRangers();  
 			  }
 			  
+			  //delete Park Ranger by id and park service id
 			  @DeleteMapping("/parkService/{parkServiceId}/parkRanger/{parkRangerId}") 
 			  public Map<String, String> deleteParkRangerById(@PathVariable Long parkRangerId,
-			  Long parkServiceId) { 
+			  @PathVariable Long parkServiceId) { 
 			  log.info("Deleting ParkRanger with ID={)", parkRangerId, parkServiceId);  
-			  parkServiceService.deleteParkRangerById(parkRangerId, parkServiceId);  
+			  parkServiceService.deleteParkRangerById(parkServiceId, parkRangerId);  
 			  return Map.of("message", "Deletion of ParkRanger with ID=" + parkRangerId +
 			  " was successful.");  
 			  }
 			  
+			  //Update camper by camper id and park service id
 			  @PutMapping("/parkService/{parkServiceId}/parkServiceCamper/{camperID}") 
-			  public ParkServiceCamper parkServiceCamper(@PathVariable Long parkServiceId, @PathVariable Long camperId,  
-			  @RequestBody ParkServiceCamper parkServiceCamper) { 
-			  parkServiceCamper.setCamperId(camperId);
+			  public CamperData updateCamper (@PathVariable Long parkServiceId, @PathVariable Long camperId,  
+			  @RequestBody CamperData camperData) { 
+			  camperData.setCamperId(camperId);
 			  log.info("Updating parkServiceParkCamper ()", camperId); 
-			  return parkServiceService.saveCamper(parkServiceId, parkServiceCamper); 
+			  return parkServiceService.saveCamper(parkServiceId, camperData); 
 			  }	 
 			  
 			  //Retrieve camper by Id from Park Service by park Service Id
@@ -138,14 +147,16 @@ public class ParkServiceController {
 			  return parkServiceService.retrieveCamperById(parkServiceId, camperId); 
 			  }  
 			  
+			  //Retrieve all campers
 			  @GetMapping("/parkService/camper") 
 			  public List<CamperData> retrieveAllCampers() {
 			  log.info("Retrieve all Campers."); 
 			  return parkServiceService.retrieveAllCampers();  
 			  }
 			  
+			  //Delete camper by camper id and park service 
 			  @DeleteMapping("/parkService/{parkServiceId}/camper/{camperId}") 
-			  public Map<String, String> deleteCamperById(@PathVariable Long parkServiceId, Long camperId ) {
+			  public Map<String, String> deleteCamperById(@PathVariable Long parkServiceId, @PathVariable Long camperId ) {
 			  log.info("Deleting Camper with ID={)", camperId, parkServiceId);  
 			  parkServiceService.deleteCamperById(parkServiceId, camperId);  
 			  return Map.of("message", "Deletion of Camper with ID=" + camperId +

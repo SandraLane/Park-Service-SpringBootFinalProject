@@ -3,23 +3,22 @@ package park.service.service;
 import java.util.LinkedList;
 
 
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import park.service.controller.model.ParkServiceData.ParkServiceCamper;
-import park.service.controller.model.ParkServiceData.ParkServiceParkRanger;
 import park.service.controller.model.CamperData;
 import park.service.controller.model.ParkRangerData;
 import park.service.controller.model.ParkServiceData;
 import park.service.dao.CamperDao;
 import park.service.dao.ParkRangerDao;
 import park.service.dao.ParkServiceDao;
-import park.service.entity.Camper;
-import park.service.entity.ParkRanger;
-import park.service.entity.ParkService;
+import park.service.entities.Camper;
+import park.service.entities.ParkRanger;
+import park.service.entities.ParkService;
 
 @Service
 public class ParkServiceService {
@@ -41,6 +40,7 @@ public class ParkServiceService {
 		
 
 	private void copyParkServiceFields(ParkService parkService, ParkServiceData parkServiceData) {
+		parkService.setParkServiceId(parkServiceData.getParkServiceId());
 		parkService.setParkServiceName(parkServiceData.getParkServiceName());
 		parkService.setParkServiceAddress(parkServiceData.getParkServiceAddress());
 		parkService.setParkServiceCity(parkServiceData.getParkServiceCity());
@@ -100,6 +100,11 @@ public class ParkServiceService {
 	  return parkRanger; 
 	  }
 	  
+	  private ParkRanger findParkRangerbyId(Long parkServiceId, Long parkRangerId) {
+		return parkRangerDao.findById(parkServiceId).orElseThrow(() -> new NoSuchElementException("ParkRanger with ID=" + parkRangerId + 
+				" is not employed by the ParkService with ID=" + parkServiceId + "."));
+	}
+	  
 	  private Camper findCamperById(Long parkServiceId, Long camperId) { 
 	  Camper camper = camperDao.findById(camperId).orElseThrow(() -> new
 		  NoSuchElementException("Camper with ID=" + camperId + "was not found."));
@@ -117,78 +122,57 @@ public class ParkServiceService {
 		  } 
 		  return camper; 
 	  }
-	  
-//	  private Camper findCamperById(Long parkServiceId, Long camperId) { 
-//		  Camper camper = camperDao.findById(camperId).orElseThrow(()
-//		  -> new NoSuchElementException ("Camper with ID=" + camperId +
-//		  " was not found.")); 
-//		  if(camper.getParkServices().getParkServiceId() !=
-//		  parkServiceId) { 
-//		  throw new IllegalArgumentException("The camper with ID=" + camperId +
-//		  " is not staying at the ParkService with ID=" + parkServiceId + "."); 
-//		  }
-//		  return camper; 
-//		  }
-//	  
-//	  private ParkRanger findParkRangerbyId(Long parkServiceId, Long parkRangerId) {
-//			return parkRangerDao.findById(parkServiceId).orElseThrow(() -> new NoSuchElementException("ParkRanger with ID=" + parkRangerId + 
-//					" is not employed by the ParkService with ID=" + parkServiceId + "."));
-//		}
-	  
-//	  private Camper findCamperbyId(Long parkServiceId, Long camperId) {
-//			return camperDao.findById(parkServiceId).orElseThrow(() -> new NoSuchElementException("Camper with ID=" + camperId + 
-//					" was not found by the ParkService with ID=" + parkServiceId + "."));
-//		}
-	  
-	  
+	    
 		  @Transactional(readOnly = false) 
-		  public ParkServiceParkRanger saveParkRanger(Long parkServiceId, ParkServiceParkRanger
-		  parkServiceParkRanger) { 
+		  public ParkRangerData saveParkRanger(Long parkServiceId, ParkRangerData
+		  parkRangerData) { 
 		  ParkService parkService = findParkServicebyId(parkServiceId); 
-		  Long parkRangerId = parkServiceParkRanger.getParkRangerId(); 
+		  Long parkRangerId = parkRangerData.getParkRangerId(); 
 		  ParkRanger parkRanger = findOrCreateParkRanger(parkServiceId, parkRangerId);
 		  
-		  copyParkRangerFields(parkRanger, parkServiceParkRanger);
+		  copyParkRangerFields(parkRanger, parkRangerData);
 		  
 		  parkRanger.setParkService(parkService);
 		  parkService.getParkRangers().add(parkRanger);
 		  
 		  ParkRanger dbParkRanger = parkRangerDao.save(parkRanger);
 		  
-		  return new ParkServiceParkRanger(dbParkRanger); 
+		  return new ParkRangerData(dbParkRanger); 
 		  }
 		  
 		  @Transactional(readOnly = false) 
-		  public ParkServiceCamper saveCamper(Long parkServiceId, ParkServiceCamper parkServiceCamper) { 
+		  public CamperData saveCamper(Long parkServiceId, CamperData camperData) { 
 		  ParkService parkService = findParkServicebyId(parkServiceId); 
-		  Long camperId = parkServiceCamper.getCamperId(); 
+		  Long camperId = camperData.getCamperId(); 
 		  Camper camper = findOrCreateCamper(parkServiceId, camperId);
 		  
-		  copyCamperFields(camper, parkServiceCamper);
+		  copyCamperFields(camper, camperData);
 		  
 		  camper.getParkServices().add(parkService);
 		  parkService.getCampers().add(camper);
 		  
 		  Camper dbCamper = camperDao.save(camper);
 		  
-		  return new ParkServiceCamper(dbCamper); 
+		  return new CamperData(dbCamper); 
 		  }
 		  
 		  
-		  private void copyParkRangerFields(ParkRanger parkRanger, ParkServiceParkRanger parkServiceParkRanger) {
-		  parkRanger.setParkRangerFirstName(parkServiceParkRanger.getParkRangerFirstName());
-		  parkRanger.setParkRangerLastName(parkServiceParkRanger.getParkRangerLastName());
-		  parkRanger.setParkRangerPhone(parkServiceParkRanger.getParkRangerPhone());
-		  parkRanger.setParkRangerJobTitle(parkServiceParkRanger.getParkRangerJobTitle());
+		  private void copyParkRangerFields(ParkRanger parkRanger, ParkRangerData parkRangerData) {
+		  parkRanger.setParkRangerId(parkRangerData.getParkRangerId());
+		  parkRanger.setParkRangerFirstName(parkRangerData.getParkRangerFirstName());
+		  parkRanger.setParkRangerLastName(parkRangerData.getParkRangerLastName());
+		  parkRanger.setParkRangerPhone(parkRangerData.getParkRangerPhone());
+		  parkRanger.setParkRangerJobTitle(parkRangerData.getParkRangerJobTitle());
 		  
 		  }
 		  
 		  
-		  private void copyCamperFields(Camper camper, ParkServiceCamper
-		  parkServiceCamper) {
-		  camper.setCamperFirstName(parkServiceCamper.getCamperFirstName());
-		  camper.setCamperLastName(parkServiceCamper.getCamperLastName());
-		  camper.setCamperEmail(parkServiceCamper.getCamperEmail()); 
+		  private void copyCamperFields(Camper camper, CamperData
+		  camperData) {
+		  camper.setCamperId(camperData.getCamperId());
+		  camper.setCamperFirstName(camperData.getCamperFirstName());
+		  camper.setCamperLastName(camperData.getCamperLastName());
+		  camper.setCamperEmail(camperData.getCamperEmail()); 
 		  }
 		  
 		 
@@ -239,9 +223,10 @@ public class ParkServiceService {
 	  
 	  public void deleteParkRangerById(Long parkServiceId, Long parkRangerId) {
 	  ParkRanger parkRanger = findParkRangerById(parkServiceId, parkRangerId);
-	  parkRangerDao.delete(parkRanger);
-	  
+	  parkRangerDao.delete(parkRanger);  
 	  }
+	  
+	  
 	  @Transactional(readOnly = true)
 		public CamperData retrieveCamperById(Long parkServiceId, Long camperId) {
 		Camper camper = findCamperById(parkServiceId, camperId);
